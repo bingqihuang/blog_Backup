@@ -1,0 +1,133 @@
+# Hexo Configuration
+## Docs: http://hexo.io/docs/configuration.html
+## Source: https://github.com/hexojs/hexo/
+
+# Site
+title: BQ之殿的博客
+subtitle: 最怕的东西，最应该去突破。
+keywords: 懂Android,目前主要做iOS
+description:
+author: BQ之殿
+email: 594301646@163.com
+language: zh-CN #语言
+timezone:
+
+# URL
+## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
+url: www.huangbingqi.com #首页链接
+root: /
+permalink: :year/:month/:day/:title/
+permalink_defaults:
+
+# Header
+menu:
+	主页: /
+	所有文章: /archives
+
+# SubNav
+subnav:
+	github: "github.com/bingqihuang"
+	mail: "594301646@163.com"
+#weibo: "#"
+# rss: "#"
+#zhihu: "#"
+#douban: "#"
+#facebook: "#"
+#google: "#"
+#twitter: "#"
+#linkedin: "#"
+
+rss: /atom.xml
+
+# Content
+excerpt_link: more
+fancybox: true
+mathjax: true
+
+# Miscellaneous 杂项
+# google_analytics: ''
+
+# 头像url
+avator: http://7xl0cz.com1.z0.glb.clouddn.com/image/avator.jpeg
+
+#是否开启分享
+share: true
+#是否开启多说评论，填写你在多说申请的项目名称 duoshuo: duoshuo-key
+#若使用disqus，请在博客config文件中填写disqus_shortname，并关闭多说评论
+duoshuo: true
+#是否开启云标签
+tagcloud: true
+
+#是否开启友情链接
+#不开启——
+#是否开启“关于我”。
+#不开启——
+# aboutme: false
+#开启——
+aboutme: Hello! 我是黄炳期，目前在上海，主要从事Android和iOS移动开发，欢迎一起探讨我们所热爱的事情！
+
+# Directory
+source_dir: source
+
+
+public_dir: public
+tag_dir: tags
+archive_dir: archives
+category_dir: categories
+code_dir: downloads/code
+i18n_dir: :lang
+skip_render:
+
+# Writing
+new_post_name: :title.md # File name of new posts
+default_layout: post
+titlecase: false # Transform title into titlecase
+external_link: true # Open external links in new tab
+filename_case: 0
+render_drafts: false
+post_asset_folder: false
+relative_link: false
+future: true
+highlight:
+  enable: true
+  line_number: true
+  auto_detect: true
+  tab_replace:
+
+# Category & Tag
+default_category: uncategorized
+category_map:
+tag_map:
+
+#Archives 这里都修改为1，相应页面就只会列出标题，而非全文
+archive: 1
+category: 1
+tag: 1
+
+
+# Date / Time format
+## Hexo uses Moment.js to parse and display date
+## You can customize the date format as defined in
+## http://momentjs.com/docs/#/displaying/format/
+date_format: YYYY-MM-DD
+time_format: HH:mm:ss
+
+# Pagination
+## Set per_page to 0 to disable pagination
+per_page: 5
+pagination_dir: page
+
+# Extensions
+## Plugins: http://hexo.io/plugins/
+## Themes: http://hexo.io/themes/
+theme: yilia
+
+plugins: hexo-generator-feed
+
+# Deployment
+## Docs: http://hexo.io/docs/deployment.html
+deploy:
+  type: git
+  repository: git@github.com:bingqihuang/bingqihuang.github.io.git #部署仓库的SSH
+  branch: master
+
