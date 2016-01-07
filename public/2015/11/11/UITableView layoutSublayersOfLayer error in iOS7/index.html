@@ -3,17 +3,21 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Tag: macbook | BQ之殿的博客</title>
+  <title>BQ之殿的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description">
-<meta property="og:type" content="website">
+  <meta name="description" content="title: “Assertion failure in -[UITableView layoutSublayersOfLayer:]” error in iOS7tags: [iOS7, UITableView, layoutSublayersOfLayer]date: 2015-11-11
+问题来源　　起初的想法是，在UITableViewController中，如果加载没有数据，则显示一个没">
+<meta property="og:type" content="article">
 <meta property="og:title" content="BQ之殿的博客">
-<meta property="og:url" content="www.huangbingqi.com/tags/macbook/index.html">
+<meta property="og:url" content="www.huangbingqi.com/2015/11/11/UITableView layoutSublayersOfLayer error in iOS7/index.html">
 <meta property="og:site_name" content="BQ之殿的博客">
-<meta property="og:description">
+<meta property="og:description" content="title: “Assertion failure in -[UITableView layoutSublayersOfLayer:]” error in iOS7tags: [iOS7, UITableView, layoutSublayersOfLayer]date: 2015-11-11
+问题来源　　起初的想法是，在UITableViewController中，如果加载没有数据，则显示一个没">
+<meta property="og:updated_time" content="2015-11-11T08:34:54.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="BQ之殿的博客">
-<meta name="twitter:description">
+<meta name="twitter:description" content="title: “Assertion failure in -[UITableView layoutSublayersOfLayer:]” error in iOS7tags: [iOS7, UITableView, layoutSublayersOfLayer]date: 2015-11-11
+问题来源　　起初的想法是，在UITableViewController中，如果加载没有数据，则显示一个没">
   
     <link rel="alternative" href="/atom.xml" title="BQ之殿的博客" type="application/atom+xml">
   
@@ -169,53 +173,95 @@
 		</header>				
 	</div>
 </nav>
-      <div class="body-wrap">
+      <div class="body-wrap"><article id="post-UITableView layoutSublayersOfLayer error in iOS7" class="article article-type-post" itemscope itemprop="blogPost">
   
-  
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2015" class="archive-year">2015</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2015/10/30/title-macbook删除win7系统后无法合并分区的解决办法/" class="archive-article-date">
-  	<time datetime="2015-10-29T16:00:00.000Z" itemprop="datePublished">10月 30</time>
+    <div class="article-meta">
+      <a href="/2015/11/11/UITableView layoutSublayersOfLayer error in iOS7/" class="article-date">
+  	<time datetime="2015-11-11T08:34:54.000Z" itemprop="datePublished">2015-11-11</time>
 </a>
-        </div>
-    	 
+    </div>
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2015/10/30/title-macbook删除win7系统后无法合并分区的解决办法/">macbook删除win7系统后无法合并分区的解决办法</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/macbook/">macbook</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/win7/">win7</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/双系统/">双系统</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/合并分区/">合并分区</a></li></ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
-
+  <div class="article-inner">
     
+      <input type="hidden" class="isFancy" />
+    
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>title: “Assertion failure in -[UITableView layoutSublayersOfLayer:]” error in iOS7<br>tags: [iOS7, UITableView, layoutSublayersOfLayer]<br>date: 2015-11-11</p>
+<h2 id="问题来源">问题来源</h2><p>　　起初的想法是，在<strong>UITableViewController</strong>中，如果加载没有数据，则显示一个没有数据的提示<strong><em>TipView</em></strong>。在添加的过程中，都对TipView以及TipView的子View添加了约束。结果导致了Crash。但是这些在iOS8洗头版本以上是运行正常的。</p>
+<p>报错的log如下：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Assertion failure <span class="keyword">in</span> -[UITableView layoutSublayersOfLayer:], /SourceCache/UIKit_Sim/UIKit-<span class="number">2935.137</span>/UIView.m:<span class="number">8794</span></span><br></pre></td></tr></table></figure>
+<h2 id="追根溯源">追根溯源</h2><p>对于这个问题，网上也有很多说法。比如有人说UITableView在iOS7下是不能addSubView的的。还有因为之前使用的第三方库Masonry来约束的，于是也尝试着用系统自带的约束来布局。但都没有解决问题。</p>
+<p>经过测试，才发现在iOS7中，向UITableView添加子View时如果使用自动布局，就会报这个错。没办法，<strong><em>只能放弃使用AutoLayout，通过设置frame来实现。</em></strong>这就是最后的解决方案。</p>
+
+      
+    </div>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2016/01/07/mac10.10配置MySQL-5.7.10详细步骤/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption"><</strong>
+      <div class="article-nav-title">
+        
+          mac10.10配置MySQL-5.7.10详细步骤
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2015/11/04/使用genstring和NSLocalizedString实现App文本的本地化/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title"></div>
+      <strong class="article-nav-caption">></strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+<div class="share">
+	<!-- JiaThis Button BEGIN -->
+	<div class="jiathis_style">
+		<span class="jiathis_txt">分享到：</span>
+		<a class="jiathis_button_tsina"></a>
+		<a class="jiathis_button_cqq"></a>
+		<a class="jiathis_button_douban"></a>
+		<a class="jiathis_button_weixin"></a>
+		<a class="jiathis_button_tumblr"></a>
+		<a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+	</div>
+	<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1405949716054953" charset="utf-8"></script>
+	<!-- JiaThis Button END -->
+</div>
+
+
+
+<div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="UITableView layoutSublayersOfLayer error in iOS7" data-title="" data-url="www.huangbingqi.com/2015/11/11/UITableView layoutSublayersOfLayer error in iOS7/"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"true"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+
+
+
 
 </div>
       <footer id="footer">
@@ -241,9 +287,9 @@
 		mathjax: true,
 		animate: true,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
-		isTag: true,
+		isTag: false,
 		isCategory: false,
 		open_in_new: false
 	}
